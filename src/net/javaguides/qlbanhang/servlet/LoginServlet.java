@@ -33,6 +33,7 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+       request.setAttribute("action", "LOGOUT");
        request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 
@@ -51,10 +52,12 @@ public class LoginServlet extends HttpServlet {
             String password = request.getParameter("password");
 
             UserAccount u = DBUtils.findUser(conn, maNV, password);
+            
             response.setContentType("text/plain");
             response.setCharacterEncoding("UTF-8");
             
             if(u!=null) {
+            	u.setRoles(DBUtils.findRolesByUser(conn, maNV));
                 response.getWriter().write(u.toString());
             } else {
                 response.getWriter().write("INVALID");

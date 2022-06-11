@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.javaguides.qlbanhang.model.CTHD;
+import net.javaguides.qlbanhang.model.HoaDon;
 import net.javaguides.qlbanhang.model.Product;
 import net.javaguides.qlbanhang.model.UserAccount;
 
@@ -32,6 +34,24 @@ public class DBUtils {
 	      
 	        return "SUCCESS";
     }
+	
+	public static void insertUserRole(Connection conn, UserAccount user, String role) throws SQLException {
+        String sql="insert into user_role(ma_nv,role_id) values (?,?)";
+        PreparedStatement pstm =conn.prepareStatement(sql);
+        
+        pstm.setString(1,user.getMaNV());
+        if("QUAN_LY".equals(role)) {
+        	pstm.setLong(2, 2);
+        }else {
+        	pstm.setLong(2, 1);
+        }
+        
+        try {
+        	 pstm.executeUpdate();	
+        }catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
 	
 	public static UserAccount findUserByCode(Connection conn, String maNV) throws SQLException {
 	    String sql="select maNV, username, password, Sdt, Gmail from user_account " + " where MaNV=?";
@@ -94,7 +114,7 @@ public class DBUtils {
 	   
 	    
 	    return "PREFIX" + String.format("%04d", list.size() + 1);
-}
+	}
 		
 	public static List<Product> queryProduct(Connection conn) throws SQLException {
 		String sql = "Select a.Id, a.Code, a.Image, a.Name, a.Type, a.Price from Product a";
@@ -159,27 +179,24 @@ public class DBUtils {
 		pstm.setLong(1, id);
 		pstm.executeUpdate();
 	}
-//
-//
-//	public static Product findProduct(Connection conn, String ID) throws SQLException {
-//		String sql = "Select a.ID, a.Name, a.Price from Product a where a.Code=?";
-//		
-//		
-//		PreparedStatement pstm = conn.prepareStatement(sql);
-//		pstm.setString(1, ID);
-//		ResultSet rs = pstm.executeQuery();
-//		while (rs.next()) {
-//				String image = rs.getString("image"); 
-//				String name = rs.getString("Name");
-//				String type = rs.getString("Type");
-//		        Float price = rs.getFloat("Price");
-//		        
-//		        Product product = new Product(ID, image, name, type, price);
-//		        return product;
-//		}
-//		return null;
-//	}
-//	
+
+	public static List<String> findRolesByUser(Connection conn, String maNV) throws SQLException {
+		String sql = "Select r.role_name "
+				+ " from role r join user_role ur on r.id = ur.role_id "
+				+ " where ur.ma_nv = ?";
+		
+		
+		PreparedStatement pstm = conn.prepareStatement(sql);
+		pstm.setString(1, maNV);
+		ResultSet rs = pstm.executeQuery();
+		List<String> roles = new ArrayList<>();
+		while (rs.next()) {
+			
+			String roleName = rs.getString("role_name");
+			roles.add(roleName);
+		}
+		return roles;
+	}
 	
 	public static Product findProductByCode(Connection conn, String code) throws SQLException {
 		String sql = "Select a.id, a.image, a.name, a.type, a.price, a.code from Product a where a.code=?";
@@ -242,6 +259,35 @@ public class DBUtils {
 	    pstm.setString(3, product.getName());
 	    pstm.setString(4, product.getType());
 	    pstm.setDouble(5, product.getPrice());
+	    pstm.executeUpdate();
+    }
+	
+	public static void insertHoaDon(Connection conn, HoaDon hoadon) throws SQLException {
+	    String sql = "Insert into hoa_don(ma_hd, ma_nv, ten_kh, sdt, dia_chi, tong_tien, trang_thai, thoi_gian) values (?,?,?,?,?,?,?,?)";
+	   
+	    PreparedStatement pstm = conn.prepareStatement(sql);
+	    pstm.setString(1, hoadon.getMaHoaDon());
+	    pstm.setString(2, hoadon.getMaNV());
+	    pstm.setString(3, hoadon.getTenKH());
+	    pstm.setString(4, hoadon.getSdt());
+	    pstm.setString(5, hoadon.getDiaChi());
+	    pstm.setDouble(6, hoadon.getTongTien());
+	    pstm.setDouble(7, hoadon.getTrangThai());
+	    pstm.setString(8, hoadon.getThoiGian());
+	    pstm.executeUpdate();
+    }
+	
+	
+	public static void insertCTHD(Connection conn, CTHD cthd) throws SQLException {
+	    String sql = "Insert into cthd(ma_cthd, ma_hd, ma_sp, tong_tien, don_gia, so_luong) values (?,?,?,?,?,?)";
+	   
+	    PreparedStatement pstm = conn.prepareStatement(sql);
+	    pstm.setString(1, cthd.getMaCTHD());
+	    pstm.setString(2, cthd.getMaHoaDon());
+	    pstm.setString(3, cthd.getMaSP());
+	    pstm.setFloat(4, cthd.getTongTien());
+	    pstm.setDouble(5, cthd.getDonGia());
+	    pstm.setDouble(6, cthd.getSoLuong());
 	    pstm.executeUpdate();
     }
 }

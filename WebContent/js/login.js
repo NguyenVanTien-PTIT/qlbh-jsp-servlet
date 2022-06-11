@@ -1,3 +1,5 @@
+localStorage.removeItem('currentUser')
+
 const btnLogin = document.getElementById('login-btn')
 
 btnLogin.addEventListener("click", () => {

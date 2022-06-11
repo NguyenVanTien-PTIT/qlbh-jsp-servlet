@@ -1,11 +1,15 @@
 var regex = /^[A-Za-z0-9 ]+$/
 
 function success(msg, title) { toastr.success(msg, title); }
-function error(msg, title) { toastr.error(msg); }
+function error(msg, title) { toastr.error(msg, title); }
 
 function getHost() { 
 	return 'http://localhost:8080/qlbanhang'
  }
+
+function getCarts(){
+	return JSON.parse(localStorage.getItem('cart'))
+}
 
 function validateMaNV(){
 	const maNV = document.getElementById("maNV").value
@@ -215,4 +219,19 @@ function isAuthentication(){
 	if(user) return;
 	
 	setTimeout(() => window.location.href = getHost() + '/login')
+}
+
+function getCurrentUser(){
+	return JSON.parse(localStorage.getItem('currentUser'))	
+}
+
+function checkRole(){
+	const user = getCurrentUser()
+	if(!user.roles.includes('QUAN_LY')){
+		setTimeout(() => window.location.href = getHost() + '/products')
+	}
+}
+
+function formatCurrency(currencyValue) {
+	return currencyValue.toLocaleString('it-IT', {style : 'currency', currency : 'VND'})
 }

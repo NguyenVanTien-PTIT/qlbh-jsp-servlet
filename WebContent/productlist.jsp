@@ -54,21 +54,22 @@
                 </ul>
             </div>
             <div class="header__top__right__auth">
-                <a href="#"><i class="fa fa-user"></i> Login</a>
+                    <a href="#"><i class="fa fa-user"></i> 
+                     	<span id="current-user-login"></span>
+                    </a>
             </div>
         </div>
         <nav class="humberger__menu__nav mobile-menu">
             <ul>
-                <li class="active"><a href="./Home.jsp">Home</a></li>
-                <li><a href="./shop-grid.jsp">Shop</a></li>
+                <li class="active"><a href="home">Home</a></li>
+                <li><a href="shop">Shop</a></li>
                 <li><a href="#">Pages</a>
                     <ul class="header__menu__dropdown">        
-                        <li><a href="./shoping-cart.jsp">Shoping Cart</a></li>
-                        <li><a href="./checkout.jsp">Check Out</a></li>
+                        <li><a href="shoping-cart">Shoping Cart</a></li>
+                        <li><a href="checkout">Check Out</a></li>
                     </ul>
                 </li>
-                <li><a href="./blog.jsp">Blog</a></li>
-                <li><a href="./productlist.jsp">Product</a></li>
+                <li><a href="products">Product</a></li>
             </ul>
         </nav>
         <div id="mobile-menu-wrap"></div>
@@ -118,7 +119,13 @@
                                 </ul>
                             </div>
                             <div class="header__top__right__auth">
-                                <a href="#"><i class="fa fa-user"></i> Login</a>
+                              <i class="fa fa-user"></i> 
+                               	<span id="current-user-login2"></span>
+                            </div>
+                            <div class="header__top__right__auth" style="margin-left: 5px">
+                              <a href="logout"><i class="fa fa-power-off" aria-hidden="true"></i>
+                               	<span>Logout</span>
+                              </a>
                             </div>
                         </div>
                     </div>
@@ -135,17 +142,17 @@
                 <div class="col-lg-6">
                     <nav class="header__menu">
                         <ul>
-                            <li><a style="font-size:20px;" href="./Home.jsp">Home</a></li>
-                            <li><a style="font-size:20px;" href="./shop-grid.jsp">Shop</a></li>
+                            <li><a style="font-size:20px;" href="home">Home</a></li>
+                            <li><a style="font-size:20px;" href="shop">Shop</a></li>
                             <li><a style="font-size:20px;" href="#">Pages</a>
                                 <ul class="header__menu__dropdown">
                                    
-                                    <li><a href="./shoping-cart.jsp">Shoping Cart</a></li>
-                                    <li><a href="./checkout.jsp">Check Out</a></li>
+                                    <li><a href="shoping-cart">Shoping Cart</a></li>
+                                    <li><a href="checkout">Check Out</a></li>
                                     
                                 </ul>
                             </li>
-                            <li class="active"><a  " href="./productlist.jsp">Product</a></li>
+                            <li class="active"><a href="products">Product</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -183,7 +190,7 @@
                                     All FOOD
                                     <span class="arrow_carrot-down"></span>
                                 </div>
-                                <input type="text" name="key" value=${key} placeholder="What do yo u need?">
+                                <input type="text" name="key" value="${key}" placeholder="What do yo u need?">
                                 <button type="submit" class="site-btn">SEARCH</button>
                             </form> 
                         </div> 	
@@ -218,7 +225,11 @@
 
     <!-- Contact Form Begin -->
  <center>
+ 
     <div class="contact-form spad">
+     	<div style="display: flex; padding-left: 98px; padding-bottom: 10px;">
+ 			Result: ${size} records
+ 		</div>
         <div class="container">
 			
 	      	<table class="table">
@@ -229,8 +240,8 @@
 			     	<th scope="col">Name</th>
 			      	<th scope="col">Type</th>
 		        	<th scope="col">Price</th>
-		        	<th scope="col">Edit</th>
-		       		<th scope="col">Delete</th>
+		        	<th scope="col" class="is-admin">Edit</th>
+		       		<th scope="col" class="is-admin">Delete</th>
 			    </tr>
 			  </thead>
 			  <tbody>
@@ -241,10 +252,10 @@
 				      <td>${product.name}</td>
 				      <td>${product.type}</td>
 				      <td>${product.price}</td>
-				      <td>
+				      <td class="is-admin">
 				      	<a href="update-product?code=${product.code}">Edit</a>
 				      </td>
-			          <td>
+			          <td class="is-admin">
 				      	<a style="color: blue; cursor: pointer" onclick="deleteProduct('${product.id}')">Delete</a>
 				      </td>
 				    </tr>
@@ -252,7 +263,7 @@
 			  </tbody>
 			</table>
       	
-			<button class="btn-primary" style= "margin-top: 22px;">
+			<button class="btn-primary is-admin" style= "margin-top: 22px;">
 			      <a style="font-size: 20px; color: black; " href="create-product" >Create Product</a>
 			</button>
         </div>

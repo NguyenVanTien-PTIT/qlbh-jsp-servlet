@@ -1,4 +1,5 @@
 isAuthentication()
+checkRole()
 
 document.getElementById("type").value = typeProduct
 

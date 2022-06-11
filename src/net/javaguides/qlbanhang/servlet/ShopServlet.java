@@ -16,18 +16,17 @@ import net.javaguides.qlbanhang.dao.DBUtils;
 import net.javaguides.qlbanhang.dao.MySQLConnUtils;
 import net.javaguides.qlbanhang.model.Product;
 
-
 /**
- * Servlet implementation class ProductList
+ * Servlet implementation class ShopServlet
  */
-@WebServlet("/products")
-public class ProductListServlet extends HttpServlet {
+@WebServlet("/shop")
+public class ShopServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ProductListServlet() {
+    public ShopServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -53,9 +52,9 @@ public class ProductListServlet extends HttpServlet {
 		}
 		
 		request.setAttribute("size", list.size());	
-		request.setAttribute("productList", list);
+		request.setAttribute("products", list);
 		// Forward sang /WEB-INF/views/productListView.jsp
-		request.getRequestDispatcher("/productlist.jsp").forward(request, response);
+		request.getRequestDispatcher("/shop-grid.jsp").forward(request, response);
 	}
 
 	/**

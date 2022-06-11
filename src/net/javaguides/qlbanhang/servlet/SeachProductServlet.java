@@ -52,6 +52,7 @@ public class SeachProductServlet extends HttpServlet {
 		
 		request.setAttribute("key", keySearch);
 		request.setAttribute("productList", list);
+		request.setAttribute("size", list.size());
 		// Forward sang /WEB-INF/views/productListView.jsp
 		request.getRequestDispatcher("/productlist.jsp").forward(request,response);
 	}

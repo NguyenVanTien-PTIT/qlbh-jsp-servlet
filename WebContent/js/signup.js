@@ -96,7 +96,7 @@ function signup(data) {
 					error('Mã nhân viên đã tồn tại')
 				}else {
 					success('Đăng ký thành công', 'Thông báo')
-					document.getElementById('form-register').reset();
+					setTimeout(() => window.location.href = getHost() + '/login', 500)
 				}
 		    }
   		}

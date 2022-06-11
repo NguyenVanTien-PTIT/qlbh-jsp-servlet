@@ -16,5 +16,7 @@
 	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/apache-tomcat-8.5.73"/>
 	<classpathentry kind="lib" path="C:/Users/tieng/Downloads/javax.servlet-3.0.jar"/>
 	<classpathentry kind="lib" path="C:/Users/tieng/Downloads/javax.servlet-api-3.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/tieng/Downloads/gson-2.9.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/tieng/Downloads/jackson-all-1.7.3.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

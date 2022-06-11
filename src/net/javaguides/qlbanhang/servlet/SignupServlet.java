@@ -67,7 +67,8 @@ public class SignupServlet extends HttpServlet {
             if(user != null) {
             	rs = "INVALID";
             }else {
-                rs = DBUtils.insertUserAccount(conn,usr); 	
+                rs = DBUtils.insertUserAccount(conn,usr);
+                DBUtils.insertUserRole(conn, usr, "NHAN_VIEN");
             }
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");

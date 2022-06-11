@@ -35,50 +35,40 @@
     <div class="humberger__menu__wrapper">
         <div class="humberger__menu__logo">
             <a href="#"><img src="img/logo.jpg" alt=""></a>
-            
         </div>
         <div class="humberger__menu__cart">
             <ul>
                 <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
                 <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
             </ul>
-
+           
         </div>
         <div class="humberger__menu__widget">
             <div class="header__top__right__language">
                 <img src="img/language.png" alt="">
                 <div>English</div>
                 <span class="arrow_carrot-down"></span>
-               <ul>
-                 
-                    <li><a href="#">Vietnamese</a></li>
+                <ul>
+                    <li><a href="#">English</a></li>
                 </ul>
-                
-                
             </div>
             <div class="header__top__right__auth">
-            	
-               <a id="authentication-control" href="#">
-               	<i class="fa fa-user"></i> 
-               	<span id="current-user-login"></span>
-               </a>
-                
-           	</div>
+                    <a href="#"><i class="fa fa-user"></i> 
+                     	<span id="current-user-login"></span>
+                    </a>
+            </div>
         </div>
         <nav class="humberger__menu__nav mobile-menu">
             <ul>
-                <li class="active"><a href="./Home.jsp">Home</a></li>
-                <li><a href="/shop-grid.jsp">Shop</a></li>
+                <li class="active"><a href="home">Home</a></li>
+                <li><a href="shop">Shop</a></li>
                 <li><a href="#">Pages</a>
-                    <ul class="header__menu__dropdown">
-                        
-                        <li><a href="./shoping-cart.jspl">Shoping Cart</a></li>
-                        <li><a href="./checkout.jsp">Check Out</a></li>
-                        
+                    <ul class="header__menu__dropdown">        
+                        <li><a href="shoping-cart">Shoping Cart</a></li>
+                        <li><a href="checkout">Check Out</a></li>
                     </ul>
                 </li>
-                <li><a href="./blog.jsp">Blog</a></li>
-                <li><a href="./products">Product</a></li>
+                <li><a href="products">Product</a></li>
             </ul>
         </nav>
         <div id="mobile-menu-wrap"></div>
@@ -102,15 +92,15 @@
         <div class="header__top">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-6 col-md-6">
+                    <div class="col-lg-6">
                         <div class="header__top__left">
                             <ul>
                                 <li><i class="fa fa-envelope"></i> hcmunre.edu.vn</li>
-                				<li>Free Shipping for all Order of 350,000</li>
+               				    <li>Free Shipping for all Order of 350,000</li>
                             </ul>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-md-6">
+                    <div class="col-lg-6">
                         <div class="header__top__right">
                             <div class="header__top__right__social">
                                 <a href="#"><i class="fa fa-facebook"></i></a>
@@ -123,15 +113,18 @@
                                 <div>English</div>
                                 <span class="arrow_carrot-down"></span>
                                 <ul>
-                               
-                                     <li><a href="#">Vietnamese</a></li>
+                         
+                                    <li><a href="#">English</a></li>
                                 </ul>
                             </div>
                             <div class="header__top__right__auth">
-                              <a href="#"><i class="fa fa-user"></i> 
+                              <i class="fa fa-user"></i> 
                                	<span id="current-user-login2"></span>
+                            </div>
+                            <div class="header__top__right__auth" style="margin-left: 5px">
+                              <a href="logout"><i class="fa fa-power-off" aria-hidden="true"></i>
+                               	<span>Logout</span>
                               </a>
-            
                             </div>
                         </div>
                     </div>
@@ -148,20 +141,21 @@
                 <div class="col-lg-6">
                     <nav class="header__menu">
                         <ul>
-                            <li class="active"><a style="font-size: 20px" href="./Home.jsp">Home</a></li>
-                            <li><a style="font-size: 20px" href="./shop-grid.jsp">Shop</a></li>
-                            <li><a style="font-size: 20px" href="#">Pages</a>
+                            <li class="active"><a style="font-size:20px;" href="home">Home</a></li>
+                            <li><a style="font-size:20px;" href="shop">Shop</a></li>
+                            <li><a style="font-size:20px;" href="#">Pages</a>
                                 <ul class="header__menu__dropdown">
                                    
-                                    <li><a href="./shoping-cart.jsp">Shoping Cart</a></li>
-                                    <li><a href="./checkout.jsp">Check Out</a></li>
-                                   
+                                    <li><a href="shoping-cart">Shoping Cart</a></li>
+                                    <li><a href="checkout">Check Out</a></li>
+                                    
                                 </ul>
                             </li>
-                            <li><a style="font-size: 20px" href="products">Product</a></li>
+                            <li><a href="products">Product</a></li>
                         </ul>
                     </nav>
                 </div>
+                
             </div>
             <div class="humberger__open">
                 <i class="fa fa-bars"></i>

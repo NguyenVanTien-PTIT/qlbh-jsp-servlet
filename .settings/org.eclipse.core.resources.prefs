@@ -1,5 +1,6 @@
 eclipse.preferences.version=1
 encoding//WebContent/productlist.jsp=UTF-8
+encoding//WebContent/shop-grid.jsp=UTF-8
 encoding//src/net/javaguides/qlbanhang/servlet/CreateProductServlet.java=UTF-8
 encoding//src/net/javaguides/qlbanhang/servlet/SignupServlet.java=UTF-8
 encoding//src/net/javaguides/qlbanhang/servlet/UpdateProductServlet.java=UTF-8

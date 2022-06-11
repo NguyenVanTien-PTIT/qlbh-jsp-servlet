@@ -1,4 +1,5 @@
 isAuthentication()
+checkRole()
 
 function selectTypeChange(productCode){
 	const type = document.getElementById("type").value

@@ -1,5 +1,7 @@
 package net.javaguides.qlbanhang.model;
 
+import java.util.List;
+
 public class UserAccount {
 
 	private String maNV;
@@ -7,7 +9,18 @@ public class UserAccount {
 	private String fullName;
 	private String phone;
 	private String email;
+	private List<String> roles;
 	
+	public List<String> getRoles() {
+		return roles;
+	}
+
+
+	public void setRoles(List<String> roles) {
+		this.roles = roles;
+	}
+
+
 	public UserAccount(){
 	}
 	
@@ -74,11 +87,24 @@ public class UserAccount {
 
 	@Override
 	public String toString() {
+		StringBuilder roleStr = new StringBuilder("[");
+		
+		for(int i=0; i<roles.size(); i++) {
+			if(i != roles.size() - 1) {
+				roleStr.append("'" + roles.get(i) + "',");
+			}else {
+				roleStr.append("'" + roles.get(i) + "'");
+			}
+		}
+		roleStr.append("]");
+		
 		return "UserAccount{'maNV':'" + maNV + 
 				"','password':'" + password + 
 				"','fullName':'" + fullName + 
 				"','phone':'" + phone + 
-				"','email':'" + email + "'}";
+				"','email':'" + email + 
+				"','roles':" + roleStr.toString() + 
+				"}";
 	}
 
 	
