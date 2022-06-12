@@ -51,8 +51,9 @@ public class CheckoutServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = new Date();
+		System.out.println(dateFormat.format(date));
 		request.setAttribute("today", dateFormat.format(date));
 		request.getRequestDispatcher("checkout.jsp").forward(request, response);
 	}

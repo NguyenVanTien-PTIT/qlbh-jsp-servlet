@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -93,14 +94,27 @@ public class UpdateProductServlet extends HttpServlet {
 
 			// Kiem tra
 			Product product = DBUtils.findProductById(conn, id);
+			
 			if(product == null) {
 				result = "INVALID"; 
 			}else {
+			
+				List<String> cthds = DBUtils.findCTHDByMaSP(conn, product.getCode());
+				
+				if(!cthds.isEmpty()){
+					result = "EXIST_CTHD";
+				} 
+				
+			}
+			
+			
+			if("".equals(result)) {		
 				pro.setId(product.getId());
 				pro.setImage("".equals(image) ? product.getImage() : image);
 				DBUtils.updateProduct(conn, pro);	
-				result = "SUCCESS"; 
+				result = "SUCCESS"; 	
 			}
+			
 			
 		} catch (Exception ex) {
 			System.err.println(ex.getMessage());

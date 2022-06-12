@@ -19,8 +19,7 @@ function checkRole(){
 }
 
 function deleteProduct(id) {
-	console.log(id)
-	
+
 	$.ajax ({
         url: getHost() + `/delete-product?id=${id}`,
         type: "POST",
@@ -32,11 +31,18 @@ function deleteProduct(id) {
 				const res = (data.responseText)
 				
 				if(res === 'INVALID'){
-					error('Có lỗi xảy ra', '')
-				}else {
-					success('Xóa thành công', 'Thông báo')
-					setTimeout(() => window.location.reload(), 500)
+					error('Sản phẩm đã bị xóa hoặc không tồn tại', '')
+					return
 				}
+				
+				if(res === 'EXIST_CTHD') {
+					error('Sản phẩm đã được đặt hàng. Không được xóa!', '')
+					return
+				}
+				
+				success('Xóa thành công', 'Thông báo')
+				setTimeout(() => window.location.reload(), 500)
+				
 		    }
   		}
     });

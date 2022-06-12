@@ -82,11 +82,16 @@ function updateProduct(){
 				
 				if(res === 'INVALID'){
 					error('Sản phẩm đã bị xóa hoặc không tồn tại', '')
-				}else {
-					success('Cập nhật sản phẩm thành công', 'Thông báo')
-					setTimeout(() => 
-					window.location.href = getHost() + '/products', 500)
+					return
 				}
+				
+				if(res === 'EXIST_CTHD') {
+					error('Sản phẩm đã được đặt hàng. Không được xóa!', '')
+					return
+				}
+				success('Cập nhật sản phẩm thành công', 'Thông báo')
+				setTimeout(() => 
+				window.location.href = getHost() + '/products', 500)
 		    }
   		}
     });

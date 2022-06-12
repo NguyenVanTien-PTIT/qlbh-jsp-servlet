@@ -3,6 +3,7 @@ package net.javaguides.qlbanhang.servlet;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import net.javaguides.qlbanhang.dao.DBUtils;
 import net.javaguides.qlbanhang.dao.MySQLConnUtils;
+import net.javaguides.qlbanhang.model.Product;
 import net.javaguides.qlbanhang.model.UserAccount;
 
 /**
@@ -44,16 +46,38 @@ public class DeleteProductServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Connection conn;
+        String result = "";
         try{
         
             conn= MySQLConnUtils.getMySQLConnection();
    
+            
             Long id = Long.parseLong(request.getParameter("id"));
-			DBUtils.deleteProduct(conn, id);
+            
+            // Kiem tra
+ 			Product product = DBUtils.findProductById(conn, id);
+ 			
+ 			if(product == null) {
+ 				result = "INVALID"; 
+ 			}else {
+ 			
+ 				List<String> cthds = DBUtils.findCTHDByMaSP(conn, product.getCode());
+ 				
+ 				if(!cthds.isEmpty()){
+ 					result = "EXIST_CTHD";
+ 				} 
+ 				
+ 			}
+            
+ 			if("".equals(result)) {
+ 				DBUtils.deleteProduct(conn, id);	
+ 				result = "SUCCESS";
+ 			}
+		
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");
             
-            response.getWriter().write("SUCCESS");
+            response.getWriter().write(result);
 
         }catch (Exception ex) {
            Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);

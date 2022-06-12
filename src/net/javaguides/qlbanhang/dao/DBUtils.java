@@ -290,5 +290,22 @@ public class DBUtils {
 	    pstm.setDouble(6, cthd.getSoLuong());
 	    pstm.executeUpdate();
     }
+	
+	public static List<String> findCTHDByMaSP(Connection conn, String maSP) throws SQLException {
+		String sql = "Select ma_hd from cthd where ma_sp=?";
+		
+		
+		PreparedStatement pstm = conn.prepareStatement(sql);
+		pstm.setString(1, maSP);
+		ResultSet rs = pstm.executeQuery();
+		
+		List<String> list = new ArrayList<>();
+		
+		while (rs.next()) {
+			String maHD = rs.getString("ma_hd"); 
+	        list.add(maHD);
+		}
+		return list;
+	}
 }
 
